@@ -7,8 +7,6 @@
 class Node {
   /** @type {string} */
   #key
-  /** @type {any} */
-  #value;
   /** @type {Node | null | undefined} */
   #nextNode;
   /** @type {number} */
@@ -16,13 +14,11 @@ class Node {
 
   /**@constructor
    * @param {string} key 
-   * @param {any} val 
    * @param {Node | null | undefined} next 
    * @param {number} hash 
    * */
-  constructor(key, val, next, hash) {
+  constructor(key, next, hash) {
     this.#key = key
-    this.#value = val ?? null;
     this.#nextNode = next ?? null;
     this.#hashKey = hash;
   }
@@ -48,21 +44,6 @@ class Node {
    * */
   get key(){
     return this.#key
-  }
-
-  /**
-   * @method to return the value of the node
-   * @returns {any}
-   * */
-  get value() {
-    return this.#value;
-  }
-  /**
-   * @method to set the value of the node
-   * @param {any} val 
-   * */
-  set value(val) {
-    this.#value = val;
   }
 
   /**

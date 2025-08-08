@@ -2,17 +2,17 @@
 import LinkedList from "./linkedlist.js"
 
 /**
- * @class Hashmap
- * @classdesc A hashmap class
+ * @class Hashset
+ * @classdesc A hashset class
  * */
-class Hashmap {
+class Hashset {
   #capacity = 16;
   #load_factor;
   #size;
-  #buckets; // the buckets of the hashmap
+  #buckets; // the buckets of the hashset
   /**
    * @constructor
-   * @description hashmap takes a capacity (default 16) and a load_factor (default 0.8)
+   * @description hashset takes a capacity (default 16) and a load_factor (default 0.8)
    * @param {number} [capacity=16] 
    * @param {number} [load_factor=0.8] 
    * */
@@ -66,45 +66,12 @@ class Hashmap {
   }
 
   /**
-   * @method to set a value to a key
-   * @param {string} key 
-   * @param {any} value 
+   * @method to add a key into the hashset
+   * @param {any} key 
    * */
-  set(key, value) {
-    if(this.#size >= this.#capacity * this.#load_factor){
-      console.log('capacity growth...')
-      const oldEntries = this.entries()
-      this.#capacity *= 2
-      this.#buckets = new Array(this.#capacity);
-      this.#size = 0;
-      // copy old hash into new hash
-      for(const [oldKey, oldValue] of oldEntries){
-        this.set(oldKey, oldValue)
-      }
-    }
-    // Implement the set method
-    const hash = this.hash(key);
-    if (!this.#buckets[hash]) {
-      // bucket empty fill it with a linked list
-      const list = new LinkedList();
-      list.append(key, value, hash);
-      // console.log('file: hashmap.js~line: 92~list', key, value, hash)
-      this.#buckets[hash] = list
-      // console.log('file: hashmap.js~line: 94~buckets', this.#buckets[hash].toString())
-      this.#size++;
-    } else if (this.#buckets[hash]) {
-      if (this.#buckets[hash].contains(key)) {
-        // TODO: fix the updating of the value
-        // update the key with the new value
-        // console.log('inside hashmap set')
-        this.#buckets[hash].set(key, value);
-        // console.log('file: hashmap.js~line: 102~buckets', this.#buckets[hash].toString())
-      } else {
-        this.#buckets[hash].append(key, value, hash);
-        // console.log('file: hashmap.js~line: 105~buckets', this.#buckets[hash].toString())
-        this.#size++
-      }
-    }
+  add(key){
+    // TODO: implement the add method
+
   }
 
   /**
@@ -193,35 +160,7 @@ class Hashmap {
     // flatten the arrays
     return array.flat(2);
   }
-
-  /**
-   * @method to return the values of the hashmap as an a array
-   * @returns {Array}
-   * */
-  values() {
-    let array = []
-    for (let i = 0; i < this.#capacity; i++) {
-      if (this.#buckets[i]) {
-        array.push(this.#buckets[i].values())
-      }
-    }
-    return array.flat(2);
-  }
-
-  /**
-   * @method to return the entries of hashmap
-   * @returns {Array}
-   * */
-  entries() {
-    let array =  []
-    for (let i = 0; i < this.#capacity; i++) {
-      if (this.#buckets[i]) {
-        array.push(this.#buckets[i].entries())
-      }
-    }
-    return array.flat(1);
-  }
 }
 
-/** @module Hashmap */
-export default Hashmap;
+/** @module Hashset */
+export default Hashset;
