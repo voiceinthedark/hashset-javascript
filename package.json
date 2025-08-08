@@ -1,0 +1,22 @@
+{
+  "name": "hashmap",
+  "version": "0.0.36",
+  "description": "A hashmap implementation in javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --experimental-vm-modules ./node_modules/.bin/jest",
+    "test:watch": "node --experimental-vm-modules ./node_modules/.bin/jest --watch",
+    "test:coverage": "node --experimental-vm-modules ./node_modules/.bin/jest --coverage"
+  },
+  "type": "module",
+  "keywords": [
+    "hashmap",
+    "javascript"
+  ],
+  "author": "voiceinthedark",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "jest": "^30.0.5"
+  }
+}
