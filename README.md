@@ -1,5 +1,5 @@
-# Hashmap in javascript
+# Hashset in javascript
 
 ## About
 
-Hashmap implementation in javascript
+Hashset implementation in javascript

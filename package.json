@@ -1,7 +1,7 @@
 {
-  "name": "hashmap",
-  "version": "0.0.36",
-  "description": "A hashmap implementation in javascript",
+  "name": "hashset javascript",
+  "version": "0.0.01",
+  "description": "A hashset implementation in javascript",
   "main": "index.js",
   "scripts": {
     "test": "node --experimental-vm-modules ./node_modules/.bin/jest",
@@ -10,8 +10,9 @@
   },
   "type": "module",
   "keywords": [
-    "hashmap",
-    "javascript"
+    "hashset",
+    "javascript",
+    "jest"
   ],
   "author": "voiceinthedark",
   "license": "ISC",
