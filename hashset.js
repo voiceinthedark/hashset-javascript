@@ -69,36 +69,36 @@ class Hashset {
    * @method to add a key into the hashset
    * @param {any} key 
    * */
-  add(key){
-    // TODO: implement the add method
+  add(key) {
+    // Increase the capacity once the threshold is reached
+    if(this.#size >= this.#capacity * this.#load_factor){
+      let oldKeys = this.keys()
+      this.#capacity *= 2
+      this.#buckets = new Array(this.#capacity)
+      this.#size = 0
 
-  }
-
-  /**
-   * @method to get the value from the key, null if not found
-   * @param {string} key
-   * @returns {any}
-   * */
-  get(key) {
-    try {
-      if (!key) {
-        throw new Error('Key cannot be empty')
+      for(let k of oldKeys){
+        this.add(k);
       }
-      const hash = this.hash(key);
-      // console.log(`hash: ${hash}`)
-      // console.log(`buckets of hash: ${this.#buckets[hash]}`)
-      if (!this.#buckets[hash])
-        return null;
-      const node = this.#buckets[hash].get(key);
-      return node?.value
-    } catch (error) {
-      console.error(error.message)
+    }
+
+    const hash = this.hash(key);
+    if (!this.#buckets[hash]) {
+      this.#buckets[hash] = new LinkedList();
+      this.#buckets[hash].append(key, hash);
+      this.#size++
+    } else{
+      if(this.#buckets[hash].contains(key)){
+        return
+      }
+      this.#buckets[hash].append(key, hash);
+      this.#size++
     }
   }
 
   /**
    * @method to check whether a key exists in the hashmap
-   * @param {string} key 
+   * @param {any} key 
    * @returns {boolean}
    * */
   has(key) {
@@ -112,7 +112,7 @@ class Hashset {
 
   /**
    * @method to remove a key from the hashmap returns true on success
-   * @param {string} key 
+   * @param {any} key 
    * @returns {boolean}
    * */
   remove(key) {
@@ -121,9 +121,9 @@ class Hashset {
     // get the index of the key
     const hash = this.hash(key)
     let idx = this.#buckets[hash].find(key)
-    if(idx === null) return false
+    if (idx === null) return false
     this.#buckets[hash].removeAt(idx)
-    if(this.#buckets[hash].size === 0){
+    if (this.#buckets[hash].size === 0) {
       this.#buckets[hash] = null
     }
     this.#size--
@@ -148,7 +148,7 @@ class Hashset {
 
   /**
    * @method to return the keys of the hashmap as an array
-   * @returns {Array<string>}
+   * @returns {Array}
    * */
   keys() {
     let array = []
