@@ -76,12 +76,14 @@ class LinkedList {
 
   /**
    * @method to get the node value
-   * @param {string} key 
+   * @param {any} key 
    * @returns {Node |null | undefined}
    * */
   get(key) {
+
     // get the index of the node
     let idx = this.find(key);
+    if(!idx) return null;
     let current = this.#head
     if (idx === 0) {
       return current;

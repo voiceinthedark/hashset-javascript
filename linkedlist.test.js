@@ -157,6 +157,9 @@ describe('Linkedlist tests', () => {
       expect(list.removeAt(0)).toBe(1)
       expect(list.contains(1)).toBeFalsy()
     })
+    test('removing an item at greater than 0 index works', () => {
+      expect(list.removeAt(2)).toBe(3)
+    })
   })
   describe('keys method tests', () => {
     let list;
@@ -173,7 +176,7 @@ describe('Linkedlist tests', () => {
     test('the array returned should hold the keys as items', () => {
       expect(list.keys()).toContain(6)
     })
-    
+
   })
 
   describe('tostring method tests', () => {
@@ -189,6 +192,22 @@ describe('Linkedlist tests', () => {
     test('toString should return a valid string', () => {
       expect(list.toString()).toMatch(/^\( [0-9]+ \)/)
     })
-    
+
+  })
+  describe('get method tests', () => {
+    let list;
+    beforeEach(() => {
+      list = new LinkedList()
+      list.append(1, 1)
+      list.append(2, 2)
+      list.append(3, 5)
+      list.append(6, 2)
+    })
+    test('get return the correct node', () => {
+      expect(list.get(2)).toHaveProperty('key', 2)
+    })
+    test('nonexistant item returns null', () => {
+      expect(list.get(77)).toBeNull()
+    })
   })
 })
