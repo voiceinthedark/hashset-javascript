@@ -5,7 +5,7 @@
  * @classdesc A node that holds data and pointer to next node
  * */
 class Node {
-  /** @type {string} */
+  /** @type {any} */
   #key
   /** @type {Node | null | undefined} */
   #nextNode;
@@ -13,7 +13,7 @@ class Node {
   #hashKey;
 
   /**@constructor
-   * @param {string} key 
+   * @param {any} key 
    * @param {Node | null | undefined} next 
    * @param {number} hash 
    * */
@@ -40,7 +40,7 @@ class Node {
   }
 
   /** @method to return the key of the node
-   * @returns {string}
+   * @returns {any}
    * */
   get key(){
     return this.#key

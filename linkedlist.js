@@ -75,15 +75,6 @@ class LinkedList {
   }
 
   /**
-   * @method to add an item to the linked list
-   * @param {any} key 
-   * */
-  add(key){
-    // TODO: implement the method
-
-  }
-
-  /**
    * @method to get the node value
    * @param {string} key 
    * @returns {Node |null | undefined}
